@@ -1,0 +1,51 @@
+ConnectionName: pac_test_azure_1_connector
+CloudType: azure
+ApplicatioName: JWTAUTHWithoutAddon
+RiskLevel: safe
+Compliance:
+- CIS
+- CSA-CCM
+ApplicationType: APIScan
+Schedule: onetime
+Target: http://prancersampleapp01.eastus2.cloudapp.azure.com:8090
+APIScan:
+  Direction: http://prancersampleapp01.eastus2.cloudapp.azure.com:8090/swagger.json
+paths:
+  exclude: []
+  include: []
+Scanner:
+  Cloud:
+    Platform:
+      Azure:
+        ContainerInstance:
+          AfterRun: delete
+          NewContainerInstance:
+            External:
+              SubscriptionId: a6941677-4c37-42fb-960c-dad8f25060a3
+              ResourceGp: final-test-pac
+              Region: westus
+              ContainerGroupName: prancer-scanner-group
+              ContainerName: prancer-pentest-instance
+              ResourceName: prancer-instances
+AuthenticationMethod: jwtAuthentication
+Authentication:
+  JWTAuth:
+    UsernameSecretKey: PixiUsername
+    PasswordSecretKey: PixiPassword
+    LoginUrl: http://prancersampleapp01.eastus2.cloudapp.azure.com:8090/api/login
+    LogoutUrl: /logout
+    LoginBodyTemplate: '{"user":"%username%","pass":"%password%"}'
+    LoginIndicator: ^.*token.*$
+    AuthorizationType: Header
+    AuthorizationKey: x-access-token
+    AuthorizationTokenType: ""
+  Vault:
+    Azure:
+      KeyVaultName: shahinKeyVault123Test
+      SubscriptionID: a6941677-4c37-42fb-960c-dad8f25060a3
+      Region: westus
+      ResourceGp: shahin-test
+# All the addons ID listed on link https://www.zaproxy.org/addons.
+AddOns:
+#  - accessControl
+#  - ascanrulesAlpha
