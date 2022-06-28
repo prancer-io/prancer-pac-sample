@@ -1,0 +1,73 @@
+Collection: Logistics Business Unit
+ConnectionName: Logistics Business Unit_connector
+CloudType: azure
+ApplicatioName: pixi_8090
+RiskLevel: standard
+Compliance:
+- CIS
+- CSA-CCM
+- HIPAA
+ApplicationType: APIScan
+Schedule: onetime
+Target: http://prancersampleapp01.eastus2.cloudapp.azure.com:8090
+# You can use postman collection as code for running attack inside the prancer.
+# PostmanCollectionRepo can include the repository of the postman collection.
+# Postman remote files should include a path which has postman collection file and
+# for postman env remote files, if you have environment variable file you can put
+# the path inside the postmanEnvRemote file so prancer will go and extract the env
+# variables and their values and merged it with postman collection.
+APIScan:
+  Type: OpenAPI
+  DirectionProvider: link
+  Direction: http://prancersampleapp01.eastus2.cloudapp.azure.com:8090/swagger.json
+  PostmanCollectionRepo: ""
+  PostmanRemoteFile: ""
+  PostmanEnvRemoteFile: ""
+paths:
+  exclude: []
+  include: []
+Scanner:
+  Cloud:
+    Platform:
+      Azure:
+        ContainerInstance:
+          AfterRun: delete
+          NewContainerInstance:
+            External:
+              SubscriptionId: a6941677-4c37-42fb-960c-dad8f25060a3
+              ResourceGp: shahin-test
+              Region: westus
+              ContainerGroupName: prancer-scanner-group
+              ContainerName: prancer-pentest-instance
+              ResourceName: prancer-instances
+AuthenticationMethod: jwtAuthentication
+Authentication:
+  JWTAuth:
+    UsernameSecretKey: PixiUsername
+    PasswordSecretKey: PixiPassword
+    LoginUrl: http://prancersampleapp01.eastus2.cloudapp.azure.com:8090/api/login
+    LogoutUrl: /logout
+    LoginBodyTemplate: '{"user":"%username%","pass":"%password%"}'
+    LoginIndicator: ^.*token.*$
+    AuthorizationType: Header
+    AuthorizationKey: x-access-token
+    AuthorizationTokenType: ""
+  Vault:
+    Azure:
+      KeyVaultName: shahinKeyVault123Test
+      SubscriptionID: a6941677-4c37-42fb-960c-dad8f25060a3
+      Region: westus
+      ResourceGp: shahin-test
+AddOns:
+- accessControl
+- ascanrulesBeta
+- sqliplugin
+- directorylistv2_3
+- portscan
+- pscanrulesBeta
+- websocket
+- fuzzdb
+- fuzzdboffensive
+- fuzz
+- graphql
+- openapi
