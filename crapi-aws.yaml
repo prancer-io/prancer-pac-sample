@@ -1,0 +1,73 @@
+Collection: aws_cspm
+ConnectionName: aws_cspm_connector
+CloudType: aws
+ApplicatioName: crAPI_8888
+RiskLevel: standard
+Compliance:
+- CIS
+- CSA-CCM
+- HIPAA
+- SOC 2
+ApplicationType: APIScan
+Schedule: onetime
+Target: http://prancersampleapp01.eastus2.cloudapp.azure.com:8888
+# You can use postman collection as code for running attack inside the prancer.
+# PostmanCollectionRepo can include the repository of the postman collection.
+# Postman remote files should include a path which has postman collection file and
+# for postman env remote files, if you have environment variable file you can put
+# the path inside the postmanEnvRemote file so prancer will go and extract the env
+# variables and their values and merged it with postman collection.
+APIScan:
+  Type: OpenAPI
+  DirectionProvider: link
+  Direction: http://prancersampleapp01.eastus2.cloudapp.azure.com:8888/swagger.json
+  PostmanCollectionRepo: ""
+  PostmanRemoteFile: ""
+  PostmanEnvRemoteFile: ""
+paths:
+  exclude: []
+  include: []
+Scanner:
+  Cloud:
+    Platform:
+      AWS:
+        AfterRun: delete
+        NewFargate:
+          External:
+            AccountId: "155603667260"
+            Region: us-west-1
+            TaskDefinition: pentest-task
+            ClusterName: pentest-cluster-crApi-final
+            SecurityGroup: pentest-security-group
+            ContainerName: prancer-scanner
+            SubnetId: subnet-4582661f
+AuthenticationMethod: jwtAuthentication
+Authentication:
+  JWTAuth:
+    UsernameSecretKey: testCRusername
+    PasswordSecretKey: testCRpassword
+    LoginUrl: /identity/api/auth/login
+    LogoutUrl: /identity/api/auth/logout
+    LoginBodyTemplate: '{"email":"%username%","password":"%password%"}'
+    LoginIndicator: ^.*token.*$
+    AuthorizationType: Header
+    AuthorizationKey: Authorization
+    AuthorizationTokenType: Bearer
+  Vault:
+    Aws:
+      SecretManager: arn:aws:secretsmanager:us-west-1:155603667260:secret:prod/posgress-FMLMj6
+      Region: us-west-1
+      AccountId: "155603667260"
+AddOns:
+- accessControl
+- ascanrulesBeta
+- sqliplugin
+- directorylistv2_3
+- portscan
+- pscanrulesBeta
+- websocket
+- fuzzdb
+- fuzzdboffensive
+- fuzz
+- graphql
+- openapi
