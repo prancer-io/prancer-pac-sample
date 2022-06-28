@@ -1,0 +1,47 @@
+Collection: azure_postman
+ConnectionName: azure_postman_connector
+CloudType: azure
+ApplicatioName: testing_postman_crapi
+RiskLevel: attack
+Compliance:
+- CIS
+- CSA-CCM
+- HIPAA
+- ISO 27001
+ApplicationType: APIScan
+Schedule: onetime
+Target: http://prancersampleapp01.eastus2.cloudapp.azure.com:8888
+# You can use postman collection as code for running attack inside the prancer.
+# Connector defines the name of the git connector available in the collection.
+# Postman remote files should include a path which has postman collection file and
+# for postman env remote files, if you have environment variable file you can put
+# the path inside the postmanEnvRemote file so prancer will go and extract the env
+# variables and their values and merged it with postman collection.
+APIScan:
+  Type: OpenAPI
+  DirectionProvider: git
+  Direction: http://prancersampleapp01.eastus2.cloudapp.azure.com:8888/v2/swagger.json
+  PostmanRemoteFile: postman_collections/crAPI Accepted.postman_collection.json
+  PostmanEnvRemoteFile: postman_collections/Crapi.postman_environment.json
+  Connector: azure_postman_connector
+paths:
+  exclude: []
+  include: []
+Scanner:
+  Cloud:
+    Platform:
+      Azure:
+        ContainerInstance:
+          AfterRun: delete
+          NewContainerInstance:
+            External:
+              SubscriptionId: d34d6141-7a19-4458-b0dd-f038bb7760c1
+              ResourceGp: testgroup
+              Region: eastus2
+              ContainerGroupName: prancer-scanner-group
+              ContainerName: prancer-pentest-instance
+              ResourceName: prancer-instances
+AuthenticationMethod: noAuthentication
+AddOns:
+- graphql
+- openapi
