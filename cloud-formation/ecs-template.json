@@ -1,0 +1,86 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "CloudFormation template for creating a Scanner",
+    "Resources": {
+        "MyTaskDefinition": {
+            "Type": "AWS::ECS::TaskDefinition",
+            "Properties": {
+                "Family": "prancer-task-definition",
+                "RequiresCompatibilities": [
+                    "FARGATE"
+                ],
+                "ExecutionRoleArn": "arn:aws:iam::155603667260:role/ecsTaskExecutionRole",
+                "Cpu": 256,
+                "Memory": 512,
+                "NetworkMode": "awsvpc",
+                "ContainerDefinitions": [
+                    {
+                        "Name": "prancer-sacanner",
+                        "Image": "devtrap/prancer-pac",
+                        "MemoryReservation": 256,
+                        "Memory": 512,
+                        "PortMappings": [
+                            {
+                                "ContainerPort": 8080,
+                                "Protocol": "tcp"
+                            },
+                            {
+                                "ContainerPort": 8090,
+                                "Protocol": "tcp"
+                            },
+                            {
+                                "ContainerPort": 80,
+                                "Protocol": "tcp"
+                            }
+                        ],
+                        "Environment":[
+                            {
+                                "Name":"PAC_CONFIG_CUSTOMER_ID",
+                                "Value":"cannytech"
+                            },
+                            {
+                                "Name":"PAC_CONFIG_DOMAIN",
+                                "Value":"qa"
+                            },
+                            {
+                                "Name":"PAC_CONFIG_ID",
+                                "Value":"6280f1f03e32e43e5acdc45d"
+                            },
+                            {
+                                "Name":"PAC_CONFIG_TOKEN",
+                                "Value":"6a9f18350f7d4db0b43f8350e686ce7c"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "ECSCluster": {
+            "Type": "AWS::ECS::Cluster",
+            "Properties": {
+                "ClusterName": "prancer-cluster"
+            }
+        },
+        "EcsSecurityGroup": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Prancer ECS Security Group",
+                "VpcId": "vpc-4ffc6b37",
+                "SecurityGroupEgress" :[
+                    {
+                        "IpProtocol" : "tcp",
+                        "FromPort":"443",
+                        "ToPort":"443",
+                        "CidrIp" : "0.0.0.0/0"
+                    },
+                    {
+                        "IpProtocol" : "tcp",
+                        "FromPort":"80",
+                        "ToPort":"80",
+                        "CidrIp" : "0.0.0.0/0"
+                    }
+                ]
+            }
+        }
+    }
+}
