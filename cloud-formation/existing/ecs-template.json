@@ -10,29 +10,13 @@
                     "FARGATE"
                 ],
                 "ExecutionRoleArn": "arn:aws:iam::155603667260:role/ecsTaskExecutionRole",
-                "Cpu": 256,
-                "Memory": 512,
+                "Cpu": 1024,
+                "Memory": 2048,
                 "NetworkMode": "awsvpc",
                 "ContainerDefinitions": [
                     {
                         "Name": "prancer-sacanner",
-                        "Image": "devtrap/prancer-pac",
-                        "MemoryReservation": 256,
-                        "Memory": 512,
-                        "PortMappings": [
-                            {
-                                "ContainerPort": 8080,
-                                "Protocol": "tcp"
-                            },
-                            {
-                                "ContainerPort": 8090,
-                                "Protocol": "tcp"
-                            },
-                            {
-                                "ContainerPort": 80,
-                                "Protocol": "tcp"
-                            }
-                        ],
+                        "Image": "prancer/prancer-pac",
                         "Environment":[
                             {
                                 "Name":"PAC_CONFIG_CUSTOMER_ID",

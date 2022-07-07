@@ -1,4 +1,6 @@
-**ecs-template.json** have been created for to create resource related to PAC scanner.
+**Cloud Formation**
 
-These will be used for sample cloud formation Template for creating PAC Scanner resources using given template in PAC (Pentest As Code) .
-How does it do
+Here we have cloud formation templates for following
+1)New External ECS
+2)New Internal ECS
+3)Exisitng ECS
