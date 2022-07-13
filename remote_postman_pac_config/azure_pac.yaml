@@ -1,0 +1,53 @@
+ConnectionName: azure_remote_test_connector
+RiskLevel: safe
+Compliance:
+- CSA-CCM
+- HIPAA
+- ISO 27001
+- SOC 2
+- HITRUST
+- NIST 800
+ApplicationType: APIScan
+Schedule: onetime
+Target: http://prancersampleapp01.eastus2.cloudapp.azure.com:8888
+# You can use postman collection as code for running attack inside the prancer.
+# PostmanCollectionRepo can include the repository of the postman collection.
+# Postman remote files should include a path which has postman collection file and
+# for postman env remote files, if you have environment variable file you can put
+# the path inside the postmanEnvRemote file so prancer will go and extract the env
+# variables and their values and merged it with postman collection.
+APIScan:
+  Type: OpenAPI
+  DirectionProvider: git
+  Direction: http://prancersampleapp01.eastus2.cloudapp.azure.com:8888/v2/swagger.json
+  PostmanRemoteFile: "remote_postman_pac_config/postman_collection.json"
+  PostmanEnvRemoteFile: "remote_postman_pac_config/postman_environment.json"
+  Connector: "azure_remote_test_connector_collection"
+Scanner:
+  Cloud:
+    Platform:
+      Azure:
+        ContainerInstance:
+          AfterRun: delete
+          NewContainerInstance:
+            External:
+              SubscriptionId: d34d6141-7a19-4458-b0dd-f038bb7760c1
+              ResourceGp: testgroup
+              Region: eastus2
+              ContainerGroupName: prancer-scanner-group
+              ContainerName: prancer-pentest-instance
+              ResourceName: prancer-instances-1
+AuthenticationMethod: noAuthentication
+AddOns:
+- accessControl
+- ascanrulesBeta
+- sqliplugin
+- directorylistv2_3
+- portscan
+- pscanrulesBeta
+- websocket
+- fuzzdb
+- fuzzdboffensive
+- fuzz
+- graphql
+- openapi
