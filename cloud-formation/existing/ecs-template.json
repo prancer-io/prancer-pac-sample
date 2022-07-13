@@ -1,0 +1,71 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "CloudFormation template for creating a Scanner",
+    "Resources": {
+        "MyTaskDefinition": {
+            "Type": "AWS::ECS::TaskDefinition",
+            "Properties": {
+                "Family": "prancer-task-definition",
+                "RequiresCompatibilities": [
+                    "FARGATE"
+                ],
+                "ExecutionRoleArn": "arn:aws:iam::155603667260:role/ecsTaskExecutionRole",
+                "TaskRoleArn":"arn:aws:iam::155603667260:role/ecsTaskExecutionRole",
+                "Cpu": 1024,
+                "Memory": 2048,
+                "NetworkMode": "awsvpc",
+                "ContainerDefinitions": [
+                    {
+                        "Name": "prancer-sacanner",
+                        "Image": "prancer/prancer-pac",
+                        "Environment":[
+                            {
+                                "Name":"PAC_CONFIG_CUSTOMER_ID",
+                                "Value":"cannytech"
+                            },
+                            {
+                                "Name":"PAC_CONFIG_DOMAIN",
+                                "Value":"qa"
+                            },
+                            {
+                                "Name":"PAC_CONFIG_ID",
+                                "Value":"6280f1f03e32e43e5acdc45d"
+                            },
+                            {
+                                "Name":"PAC_CONFIG_TOKEN",
+                                "Value":"<<Token>>"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "ECSCluster": {
+            "Type": "AWS::ECS::Cluster",
+            "Properties": {
+                "ClusterName": "prancer-cluster"
+            }
+        },
+        "EcsSecurityGroup": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Prancer ECS Security Group",
+                "VpcId": "vpc-4ffc6b37",
+                "SecurityGroupEgress" :[
+                    {
+                        "IpProtocol" : "tcp",
+                        "FromPort":"443",
+                        "ToPort":"443",
+                        "CidrIp" : "0.0.0.0/0"
+                    },
+                    {
+                        "IpProtocol" : "tcp",
+                        "FromPort":"80",
+                        "ToPort":"80",
+                        "CidrIp" : "0.0.0.0/0"
+                    }
+                ]
+            }
+        }
+    }
+}
