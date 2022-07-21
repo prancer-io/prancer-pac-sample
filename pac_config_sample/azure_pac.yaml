@@ -22,7 +22,7 @@ APIScan:
   Direction: http://prancersampleapp01.eastus2.cloudapp.azure.com:8888/v2/swagger.json
   PostmanRemoteFile: "remote_postman/postman_collection.json"
   PostmanEnvRemoteFile: "remote_postman/postman_environment.json"
-  Connector: "azure_remote_test_connector_collection"
+  Connector: azure_postman_connector
 Scripts:
 - Name: alert_on_http_response_code_errors.js
   Type: httpsender
@@ -31,7 +31,7 @@ Scripts:
   Description: A HTTP Sender Script which will raise alerts based on HTTP Response
     codes.
   Charset: UTF-8
-  Connector: azure_remote_test_script_connector
+  Connector: azure_custom_script_connector
 Scanner:
   Cloud:
     Platform:
