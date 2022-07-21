@@ -20,14 +20,14 @@ APIScan:
   Type: OpenAPI
   DirectionProvider: git
   Direction: http://prancersampleapp01.eastus2.cloudapp.azure.com:8888/v2/swagger.json
-  PostmanRemoteFile: "remote_postman_pac_config/postman_collection.json"
-  PostmanEnvRemoteFile: "remote_postman_pac_config/postman_environment.json"
+  PostmanRemoteFile: "remote_postman/postman_collection.json"
+  PostmanEnvRemoteFile: "remote_postman/postman_environment.json"
   Connector: "azure_remote_test_connector_collection"
 Scripts:
-- Name: Alert_on_HTTP_Response_Code_Errors.js
+- Name: alert_on_http_response_code_errors.js
   Type: httpsender
   Engine: Oracle Nashorn
-  File: scripts/Alert_on_HTTP_Response_Code_Errors.js
+  File: custom_script/alert_on_http_response_code_errors.js
   Description: A HTTP Sender Script which will raise alerts based on HTTP Response
     codes.
   Charset: UTF-8
