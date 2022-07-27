@@ -7,10 +7,10 @@
   },
   "servers": [
     {
-      "url": "http://{{url}}"
+      "url": "http://prancersampleapp01.eastus2.cloudapp.azure.com:8888"
     },
     {
-      "url": "http://{{url_mail}}"
+      "url": "http://prancersampleapp01.eastus2.cloudapp.azure.com:8025"
     }
   ],
   "components": {
