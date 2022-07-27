@@ -1,0 +1,1480 @@
+﻿{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "crAPI Accepted",
+    "description": "crAPI Training Scripts",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://{{url}}"
+    },
+    {
+      "url": "http://{{url_mail}}"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "noauthAuth": {
+        "type": "http",
+        "scheme": "noauth"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/identity/api/auth/signup": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Signup example.com",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "name": "{{name}}",
+                  "email": "{{email}}",
+                  "number": "{{phone}}",
+                  "password": "{{password}}"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "number"
+            },
+            "example": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "*/*"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/identity/api/auth/login": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "email": "{{email}}",
+                  "password": "{{password}}"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "number"
+            },
+            "example": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "*/*"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/identity/api/auth/forget-password": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Forgot Password",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "email": "{{email}}"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "number"
+            },
+            "example": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "*/*"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/search": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "SearchMailVerificationToken Back",
+        "parameters": [
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "number"
+            },
+            "example": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "*/*"
+          },
+          {
+            "name": "kind",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "to"
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{email}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/identity/api/auth/v3/check-otp": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Check OTP",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "email": "{{email}}",
+                  "otp": "{{OTP}}",
+                  "password": "{{password}}"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "number"
+            },
+            "example": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "*/*"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/identity/api/v2/vehicle/resend_email": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Resend vehicle email",
+        "requestBody": {
+          "content": {}
+        },
+        "parameters": [
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "number"
+            },
+            "example": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "*/*"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/identity/api/v2/vehicle/add_vehicle": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Add Vehicle from Mail",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "vin": "{{VIN}}",
+                  "pincode": "{{PIN}}"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "number"
+            },
+            "example": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "*/*"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/identity/api/v2/vehicle/vehicles": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Get vehicles",
+        "parameters": [
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "number"
+            },
+            "example": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "*/*"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/community/api/v2/community/posts/recent": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Get recent posts",
+        "parameters": [
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "number"
+            },
+            "example": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "*/*"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/community/api/v2/community/posts": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Create post ",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "title": "{{$randomLoremSentence}}",
+                  "content": "{{$randomLoremParagraph}}"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "number"
+            },
+            "example": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "*/*"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/community/api/v2/community/posts/{post_id}": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Get post",
+        "parameters": [
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "number"
+            },
+            "example": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "*/*"
+          },
+          {
+            "name": "post_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/community/api/v2/community/posts/{post_id}/comment": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Post comment",
+        "description": "Post comment",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "content": "{{$randomLoremSentence}}"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "number"
+            },
+            "example": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "*/*"
+          },
+          {
+            "name": "post_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/identity/api/v2/vehicle/{vehicle_id}/location": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Get vehicle location",
+        "parameters": [
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "number"
+            },
+            "example": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "*/*"
+          },
+          {
+            "name": "vehicle_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/workshop/api/merchant/contact_mechanic": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Contact mechanic",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "mechanic_code": "TRAC_JHN",
+                  "problem_details": "Hi Jhon",
+                  "vin": "{{VIN}}",
+                  "mechanic_api": "{{url}}/workshop/api/mechanic/receive_report",
+                  "repeat_request_if_failed": false,
+                  "number_of_repeats": 1
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtb25zdGVyQGRhcmt3ZWIuY29tIiwiaWF0IjoxNjA4NTQzODI0LCJleHAiOjE2MDg2MzAyMjR9.AAIvhrtstlloPf7-NNCcmhEZm-XkO1aO3x3CLns1em7ft9U77B88LpK9jIrF8C-IH32JPWVazRFo0gBIBZ9FpA"
+          },
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "number"
+            },
+            "example": "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "*/*"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/workshop/api/shop/products": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Get products",
+        "parameters": [
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "number"
+            },
+            "example": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "*/*"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/community/api/v2/coupon/validate-coupon": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Validate coupon",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "coupon_code": "TRAC075"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtb25zdGVyQGRhcmt3ZWIuY29tIiwiaWF0IjoxNjA4MDMxMDk5LCJleHAiOjE2MDgxMTc0OTl9.lQr14VeNm_lOmKiOIKwO6mRu_47VEU8HVWEsyBzbeaVXzIthwnTC4mNmYb0qNW2--T20_P9sOjTWtMJjKRQCJA"
+          },
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "number"
+            },
+            "example": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "*/*"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/workshop/api/shop/apply_coupon": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Apply coupon",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "coupon_code": "TRAC075",
+                  "amount": 75
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "number"
+            },
+            "example": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "*/*"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/workshop/api/shop/orders": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Create Order",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": "{\"product_id\":{{product_id}},\"quantity\":1}"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "number"
+            },
+            "example": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "*/*"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/workshop/api/shop/orders/all": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Get orders",
+        "parameters": [
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "number"
+            },
+            "example": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "*/*"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/workshop/api/shop/orders/return_order": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Return order",
+        "requestBody": {
+          "content": {}
+        },
+        "parameters": [
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "number"
+            },
+            "example": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "*/*"
+          },
+          {
+            "name": "order_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{order_id}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/identity/api/v2/user/videos": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Add video",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "number"
+            },
+            "example": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "multipart/form-data; boundary=----WebKitFormBoundaryQ6RYqyYgmpjzPDZA"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "*/*"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/identity/api/v2/user/videos/{video_id}": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Get Video",
+        "parameters": [
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "number"
+            },
+            "example": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "*/*"
+          },
+          {
+            "name": "video_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Change Video Name",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "videoName": "{{$randomNoun}}.mp4"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "number"
+            },
+            "example": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "*/*"
+          },
+          {
+            "name": "video_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/identity/api/v2/user/videos/convert_video": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Share video",
+        "parameters": [
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "number"
+            },
+            "example": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "*/*"
+          },
+          {
+            "name": "video_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{video_id}}"
+          }
+        ],
+        "responses": {
+          "403": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/identity/api/v2/user/dashboard": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Get user dashboard",
+        "parameters": [
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "number"
+            },
+            "example": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "*/*"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/identity/api/v2/user/change-email": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Change email Back",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "old_email": "{{new_email}}",
+                  "new_email": "{{email}}"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "number"
+            },
+            "example": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "*/*"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/identity/api/v2/user/verify-email-token": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Verify email token Back",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "old_email": "{{new_email}}",
+                  "new_email": "{{email}}",
+                  "token": "{{email_token}}"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "number"
+            },
+            "example": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "*/*"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}
