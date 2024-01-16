@@ -1,0 +1,8 @@
+Name: PythonLiveSite
+Technology: standalone
+Type: active
+Engine: python
+Description: Python script to check status code of targeted endpoint.
+Charset: UTF-8
+Tags:
+  Type: Blackbox, Web 

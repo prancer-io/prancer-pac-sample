@@ -1,0 +1,18 @@
+{
+  "pluginid": "{{alertid}}",
+  "alertRef": "{{alertid}}",
+  "alert": "{{title}}",
+  "name": "{{title}}",
+  "riskcode": "3",
+  "confidence": "2",
+  "riskdesc": "{{severity}}",
+  "desc": "{{desc}}",
+  "instances":[],
+  "count": "{{count}}", 
+  "solution": "{{solution}}",
+  "otherinfo": "",
+  "reference": "{{reference}}",
+  "cweid": "{{cweid}}",
+  "wascid": "{{wascid}}",
+  "sourceid": "{{sourceid}}"
+}

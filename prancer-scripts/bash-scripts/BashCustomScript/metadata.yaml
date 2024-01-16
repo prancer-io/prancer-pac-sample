@@ -1,0 +1,9 @@
+Name: BashCustomScript
+Technology: standalone
+Type: active
+Engine: bash
+Description: bash script to check if a vampi has a specific debug endpoint, the endpoint value is hardcoded for this example.
+Charset: UTF-8
+tags:
+  Type: Blackbox, Web  
+

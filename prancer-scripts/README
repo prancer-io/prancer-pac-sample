@@ -1,0 +1,21 @@
+# ONE TIME
+BASEDIR=<CLONEDIR>
+git clone https://github.com/prancer-io/prancer-pac-sample.git
+SCRIPTDIR=$BASEDIR/prancer-pac-sample/prancer-scripts
+cd $SCRIPTDIR
+python3 -m venv pyenv
+source pyenv/bin/activate
+pip install -U pip jinja2
+
+
+# AFTER FIRST TIME
+cd $BASEDIR/prancer-pac-sample
+git pull origin main
+SCRIPTDIR=$BASEDIR/prancer-pac-sample/prancer-scripts
+cd $SCRIPTDIR
+source pyenv/bin/activate
+export PYTHONPATH=$SCRIPTDIR:$SCRIPTDIR/shlib
+python python-scripts/PythonHello/run-hello.py https://vampi.prancer.cloud
+bash bash-scripts/BashHello/run-hello.sh https://vampi.prancer.cloud
+deactivate
+exit

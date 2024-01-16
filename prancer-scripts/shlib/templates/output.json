@@ -1,0 +1,16 @@
+{
+    "Alerts" : null,
+    "Messages" : null,
+    "Plugin" : { 
+        "collection" : "",
+        "configId" : "",
+        "includedTechnologyList" : [ 
+            "Language.ShellScript",
+            "Language.Python"
+        ],  
+        "resultId" : "",
+        "status" : "successful"
+    },  
+    "Result" : ""
+}
+

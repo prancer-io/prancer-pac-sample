@@ -1,0 +1,8 @@
+{
+  "uri": "{{uri}}",
+  "method": "{{method}}",
+  "param": "{{param}}",
+  "attack": "{{attack}}",
+  "evidence": "{{evidence}}",
+  "otherinfo": ""
+}

@@ -1,0 +1,13 @@
+{
+    "@generated" : "{{dt}}",
+    "@version" : "2.14.0",
+    "_id" : "{{id}}",
+    "collection" : "",
+    "completedOn" : {{epoch}},
+    "configId" : "",
+    "duration" : 1,
+    "scanId" : "", 
+    "site" : [] 
+
+}
+

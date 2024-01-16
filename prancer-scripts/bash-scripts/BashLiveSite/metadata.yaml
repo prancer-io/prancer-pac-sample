@@ -1,0 +1,8 @@
+Name: LiveSite
+Technology: standalone
+Type: active
+Engine: bash
+Description: Bash script to check status code of targeted endpoint.
+Charset: UTF-8
+Tags:
+  Type: Blackbox, Web 

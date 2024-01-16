@@ -1,0 +1,8 @@
+Name: PythonScript
+Technology: standalone
+Type: active
+Engine: python
+Description: Run python script to generate alert.
+Charset: UTF-8
+tags:
+  Type: Blackbox, Web  
